@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <string> 
 
 using namespace std;
 
@@ -13,7 +13,7 @@ public:
     Event() {}
     Event(string n, string d, string t, string v) : name(n), date(d), time(t), venue(v) {}
     void display() const {
-        cout << "Event: " << name << "\nDate: " << date << "\nTime: " << time << "\nVenue: " << venue << endl;
+        cout << "\nEvent: " << name << "\nDate: " << date << "\nTime: " << time << "\nVenue: " << venue << endl;
     }
 
     string getDate() const {
@@ -22,29 +22,31 @@ public:
 };
 
 int main() {
-    const int MaxEvents = 10;
-    Event events[MaxEvents];
+    const int MaxEvents = 100;
+    Event events[MaxEvents]; 
     int count = 0;
     string data;
     int choice;
-    cout << "\nDo enter dates in (DD/MM/YYYY) format\n";
-    cout << "Enter today's date: \n";
+    cout << "\nEnter dates in (DD/MM/YYYY) format\n";
+    cout << "Enter today's date: ";
     cin >> data;
+    cout << "\n";
 
     do {
-        cout << "---------------------------\n";
-        cout << "Event Management System\n";
+        cout << "------------------------------\n\n";
+        cout << "Event Management System\n\n";
+        cout << "------------------------------\n\n";
         cout << "1. Add Event\n";
         cout << "2. Display All Events\n";
         cout << "3. Today's Events\n";
         cout << "4. Upcoming Events\n";
-        cout << "5. Exit\n";
+        cout << "5. Exit\n\n";
         cout << "----------------------------\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
         switch (choice) {
-            case 1:
+            case 1: 
                 if (count < MaxEvents) {
                     string eventName, eventDate, eventTime, eventVenue;
                     
@@ -62,22 +64,23 @@ int main() {
                     getline(cin, eventVenue);
 
                     events[count] = Event(eventName, eventDate, eventTime, eventVenue);
-                    cout << "Event added successfully!!\n";
+                    cout << "\nEvent added successfully!!\n";
                     count++;
                 } else {
                     cout << "Cannot add more events\n" ;
                 }
                 break;
 
-            case 2:
+            case 2: 
                 if (count == 0) {
                     cout << "No events available\n" ;
                     cout << "-------------------\n";
                 } else {
                     cout << "\nList of all events:\n";
+                    cout << "------------------\n";
                     for (int i = 0; i < count; i++) {
                         events[i].display();
-                        cout << "---------------------\n";
+                        
                     }
                 }
                 break;
@@ -94,19 +97,18 @@ int main() {
                         }
                     }
                     if (!today) {
-                        cout << "No events scheduled for today.\n";
+                        cout << "No events scheduled for today.\n\n";
                     }
                 }
                 break;
 
             case 4:
-                cout << "\nUpcoming Events:\n";
+                cout << "\nUpcoming Events:\n\n";
                 {
                     bool tmw = false;
                     for (int i = 0; i < count; i++) {
                         if (events[i].getDate() > data) {
                             events[i].display();
-                            cout << "---------------------\n" ;
                             tmw = true;
                         }
                     }
@@ -116,12 +118,13 @@ int main() {
                 }
                 break;
 
-            case 5:
-                cout << "Exiting!" << endl;
+            case 5: 
+                cout << "Thank You\n";
+                cout << "Exiting!\n";
                 break;
 
             default:
-                cout << "Invalid choice, please try again." << endl;
+                cout << "Invalid choice, please try again.\n";
                 break;
         }
     } while (choice != 5);
